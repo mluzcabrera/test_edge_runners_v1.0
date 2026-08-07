@@ -1,12 +1,4 @@
-FROM node:20-alpine
-
+FROM alpine:latest
+COPY . /app
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["echo", "hello world"]
