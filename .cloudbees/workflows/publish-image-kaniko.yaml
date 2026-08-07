@@ -29,4 +29,3 @@ jobs:
         kind: build
         with:
           destination: 476449643511.dkr.ecr.eu-north-1.amazonaws.com/mlcb/demo-artifact:${{cloudbees.version}}
-          tar-path: vulnerablesqlapp.tar  
