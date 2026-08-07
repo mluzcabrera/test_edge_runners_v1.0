@@ -1,0 +1,30 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Publish image kaniko
+on:
+  workflow_dispatch:
+permissions:
+    scm-token-own: read
+    scm-token-org: read
+    id-token: write
+jobs:
+  publish:  
+    steps:
+      - name: Configure AWS credentials
+        uses: cloudbees-io/configure-aws-credentials@v1
+        with:
+          aws-region: eu-north-1
+          role-to-assume: arn:aws:iam::476449643511:role/mlcb_private_images_test_build_prod
+          role-duration-seconds: 3600
+      - name: Log in to ECR
+        id: login-ecr
+        uses: cloudbees-io/configure-ecr-credentials@v1
+        with:
+          registries: "476449643511"
+      - id: build-container
+        name: Build container image
+        uses: cloudbees-io/kaniko@v1
+        kind: build
+        with:
+          destination: 476449643511.dkr.ecr.eu-north-1.amazonaws.com/mlcb/demo-artifact:${{cloudbees.version}}
+          tar-path: vulnerablesqlapp.tar  
