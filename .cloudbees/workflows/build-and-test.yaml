@@ -24,7 +24,7 @@ jobs:
           echo "$hash" >> $CLOUDBEES_OUTPUTS/hash
       - name: Register build artifact
         id: publish-build-1
-        uses: cloudbees-io/register-build-artifact@v1
+        uses: cloudbees-io/register-build-artifact@v2
         with:
           version: ${{cloudbees.version}}
           url: 476449643511.dkr.ecr.eu-north-1.amazonaws.com/mlcb/demo-artifact:${{cloudbees.version}}
