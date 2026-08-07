@@ -14,7 +14,7 @@ jobs:
         uses: cloudbees-io/configure-aws-credentials@v1
         with:
           aws-region: eu-north-1
-          role-to-assume: arn:aws:iam::476449643511:role/mlcb_private_images_test_build_prod
+          role-to-assume: arn:aws:iam::476449643511:role/mlcb_private_images_test_build
           role-duration-seconds: 3600
       - name: Log in to ECR
         id: login-ecr
