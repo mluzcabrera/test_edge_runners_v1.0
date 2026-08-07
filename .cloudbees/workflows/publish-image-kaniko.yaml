@@ -10,6 +10,8 @@ permissions:
 jobs:
   publish:  
     steps:
+      - name: Check out repo
+        uses: cloudbees-io/checkout@v2
       - name: Configure AWS credentials
         uses: cloudbees-io/configure-aws-credentials@v1
         with:
